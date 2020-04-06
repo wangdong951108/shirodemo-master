@@ -47,20 +47,20 @@ public class GeneratorUtil {
 
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
-        gc.setOutputDir("D://auto1/open/");
+        gc.setOutputDir("D://auto1/");
         gc.setFileOverride(true);
         gc.setActiveRecord(true);// 开启 activeRecord 模式
         gc.setEnableCache(false);// XML 二级缓存
         gc.setBaseResultMap(true);// XML ResultMap
         gc.setBaseColumnList(false);// XML columList
-        gc.setAuthor("jwy");
+        gc.setAuthor("wangdong");
 
         // 自定义文件命名，注意 %s 会自动填充表实体属性！
-        // gc.setMapperName("%sDao");
-        // gc.setXmlName("%sDao");
+         gc.setMapperName("%sDao");
+         gc.setXmlName("%sDao");
         gc.setServiceName("%sService");
         gc.setServiceImplName("%sServiceImpl");
-        // gc.setControllerName("%sAction");
+         gc.setControllerName("%sAction");
         mpg.setGlobalConfig(gc);
 
         // 数据源配置
@@ -76,15 +76,16 @@ public class GeneratorUtil {
         });
         dsc.setDriverName("com.mysql.jdbc.Driver");
         dsc.setUsername("root");
-        dsc.setPassword("1234");
-        dsc.setUrl("jdbc:mysql://localhost:3306/shiro?characterEncoding=utf8");
+        dsc.setPassword("123456");
+        dsc.setUrl("jdbc:mysql://localhost:3306/test?characterEncoding=utf8");
         mpg.setDataSource(dsc);
+        //策略配置
         StrategyConfig strategy = new StrategyConfig();
         // strategy.setCapitalMode(true);// 全局大写命名
         // strategy.setDbColumnUnderline(true);//全局下划线命名
         strategy.setTablePrefix(new String[]{"sys_", "pw_"});// 此处可以修改为您的表前缀
         strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
-        
+        strategy.setInclude(new String[] { "sys_petclass"});
 //		strategy.setInclude(new String[] { "agent_apply","agent_info" ,"agent_product_coupon","agent_rank_point","agent_recommend_record"}); // 需要生成的表
 //		strategy.setInclude(new String[] { "mem_campus_product","mem_centurie" ,"mem_child_rel","mem_comment","mem_commission_detail"
 //				,"mem_coupon","mem_course_log","mem_exam","mem_exam_detail","mem_favorite","mem_feedback"
@@ -122,7 +123,7 @@ public class GeneratorUtil {
         strategy.setEntityColumnConstant(true);
         // 【实体】是否为构建者模型（默认 false）
         // public User setName(String name) {this.name = name; return this;}
-        // strategy.setEntityBuliderModel(true);
+        // strategy.setEntityBuliderM   odel(true);
         mpg.setStrategy(strategy);
 
         // 包配置

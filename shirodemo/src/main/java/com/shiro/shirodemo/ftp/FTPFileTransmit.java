@@ -56,7 +56,6 @@ public class FTPFileTransmit {
                 ftpClient.connect(ftpServerIP, ftpPort);
                 // 如果登录成功后, 才进行创建输入流
                  if (ftpClient.login(ftpName, ftpPassword)) {
-               /* if (true) {*/
                     System.out.println("ftp 登录成功");
 
                     ftpClient.changeWorkingDirectory(FolderName);

@@ -140,7 +140,7 @@
 			return {
 				user: JSON.parse(sessionStorage.getItem('user')),
 				rolePermis: JSON.parse(sessionStorage.getItem('user')).rolePermis,
-				sysName: 'vue-shiro',
+				sysName: '权限管理',
 				collapsed: false,
 				nickName: '', // 昵称
 				userImg: '', // 用户头像

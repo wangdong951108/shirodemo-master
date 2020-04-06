@@ -8,7 +8,6 @@ import com.shiro.shirodemo.service.OperatingRecordService;
 import com.shiro.shirodemo.service.PermissionService;
 import com.shiro.shirodemo.service.RolePermissionService;
 import com.shiro.shirodemo.utils.ResultUtil;
-import com.shiro.shirodemo.utils.ResultUtil;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
@@ -48,7 +47,7 @@ public class HttpAspect extends BaseApi{
 
     @Pointcut("execution(public * com.shiro.shirodemo.api..*(..))")
     public void log() {
-
+        System.out.println("log");
     }
     /**
      * @desc: 记录请求
@@ -80,6 +79,7 @@ public class HttpAspect extends BaseApi{
      */
     @AfterReturning(returning = "obj",pointcut = "log()")
     public void doAfterReturnning(Object obj) {
+        System.out.println("doAfterReturnning");
          log.info("请求返回值：{}",obj);
     }
 
@@ -92,7 +92,7 @@ public class HttpAspect extends BaseApi{
      */
     @Around("execution(* com.shiro.shirodemo.api..*(..)) && args(..,bindingResult)")
     public Object doAround(ProceedingJoinPoint pjp, BindingResult bindingResult) throws Throwable {
-
+        System.out.println("doAround");
         shiroFilter(pjp);
 
         Object retVal;
@@ -111,7 +111,6 @@ public class HttpAspect extends BaseApi{
      * @date: 2017/12/28
      */
     public void shiroFilter(JoinPoint joinPoint){
-
             ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
             HttpServletRequest request = attributes.getRequest();
 

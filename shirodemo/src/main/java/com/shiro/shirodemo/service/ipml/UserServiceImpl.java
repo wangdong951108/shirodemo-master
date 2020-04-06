@@ -24,11 +24,9 @@ import com.xiaoleilu.hutool.crypto.SecureUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -65,8 +63,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      * @return
      */
     public Object login(String name, String pass, HttpSession session, HttpServletRequest request) {
-
+        //封装用户数据
         UsernamePasswordToken upToken = new UsernamePasswordToken(name, SecureUtil.md5(pass));
+         //获取Subject
         Subject subject = SecurityUtils.getSubject();
         subject.login(upToken);
         UserInfoDto userInfoDto = (UserInfoDto) subject.getPrincipal();

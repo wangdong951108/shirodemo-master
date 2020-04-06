@@ -52,7 +52,7 @@ public class ShiroConfig {
         sffb.setUnauthorizedUrl("/login");
         // 拦截器
         Map<String,String> filterMap = new LinkedHashMap<>();
-        // 可以匿名访问
+        // 可以匿名访问 anon 无需认证   authc 必须认证
         filterMap.put("/LoginApi/v1/login", "anon");
         filterMap.put("/LoginApi/v1/logout", "anon");
         filterMap.put("/UserApi/v1/uploadHander", "anon");
