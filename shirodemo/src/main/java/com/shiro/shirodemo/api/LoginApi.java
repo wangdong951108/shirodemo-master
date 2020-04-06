@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 @RestController
 @RequestMapping(value = "LoginApi/v1")
 public class LoginApi {
-
+/*注入bean*/
     @Autowired
     private UserService userService;
 
